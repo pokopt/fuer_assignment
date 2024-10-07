@@ -18,7 +18,7 @@ To get started, clone the repository from Git:
 
 ```bash
 git clone git@github.com:pokopt/fuer_assignment.git
-cd <repo_directory>
+cd fuer_assignment
 ```
 
 ### 2. Set Up Environment Variables
