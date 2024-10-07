@@ -68,10 +68,10 @@ To run the app locally without Docker:
 
 2. Set up environment variables (or create a `.env` file as described above).
 
-3. Start the application:
+3. Start the application (handling measurements of flow and power):
 
     ```bash
-    PYTHONPATH=. python app/main.py
+    PYTHONPATH=. python app/main.py power flow
     ```
 
 4. The app will be running on [http://localhost:8080](http://localhost:8080).
@@ -89,21 +89,7 @@ You can run tests locally to verify that the backend is working as expected.
 2. Run tests:
 
     ```bash
-    pytest
-    ```
-
----
-
-## Useful Docker Commands
-
-- **Rebuild containers without cache**:
-    ```bash
-    docker-compose build --no-cache
-    ```
-
-- **Access a running container’s shell**:
-    ```bash
-    docker-compose exec <service_name> /bin/bash
+    PYTHONPATH=. pytest
     ```
 
 ---
