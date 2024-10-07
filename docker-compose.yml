@@ -1,0 +1,32 @@
+services:
+  fuer_backend:
+    build: .
+    container_name: aiohttp_app  # Name your container
+    ports:
+      - "8080:8080"  # Expose port 8080 on the host for your aiohttp app
+    volumes:
+      - .:/usr/src/app  # Mount the current directory for live code changes
+    environment:
+      - ENV=development
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=db
+    depends_on:
+      - db  # Ensure db is up before app starts
+
+  db:
+    image: postgres:13
+    container_name: aiohttp_db  # PostgreSQL database container
+    restart: always
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"  # Expose PostgreSQL port
+    volumes:
+      - db_data:/var/lib/postgresql/data  # Persistent database storage
+
+volumes:
+  db_data:  # Volume for persisting PostgreSQL data
